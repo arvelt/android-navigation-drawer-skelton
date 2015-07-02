@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 21
@@ -22,4 +23,6 @@ dependencies {
     compile 'com.android.support:support-v4:21.0.0'
     compile 'com.android.support:appcompat-v7:21.0.0'
     compile 'com.mcxiaoke.volley:library:1.+'
+    compile 'net.vvakame:jsonpullparser-core:1.6.+'
+    apt 'net.vvakame:jsonpullparser-apt:1.6.+'
 }

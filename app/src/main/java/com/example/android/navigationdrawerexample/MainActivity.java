@@ -16,6 +16,7 @@
 
 package com.example.android.navigationdrawerexample;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -48,6 +49,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import net.vvakame.util.jsonpullparser.JsonFormatException;
 
 /**
  * This example illustrates a common usage of the DrawerLayout widget
@@ -126,6 +129,16 @@ public class MainActivity extends ActionBarActivity {
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         Log.d("Got Response", response);
+                        try {
+                            EventsModel events = EventsModelGen.get(response);
+                            Log.d("decoded objects", events.toString());
+                        } catch (JsonFormatException e) {
+                            e.printStackTrace();
+                            Log.d("error", "JsonFormatException");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.d("error", "IOEXCEPTION");
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
